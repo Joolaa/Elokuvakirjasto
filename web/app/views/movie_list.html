@@ -1,8 +1,9 @@
 <ul>
     <li ng-repeat="movie in movies">
-        <h2>{{movie.name}}</h2>
+        <h2><a ng-href="#/movies/{{movie.$id}}">{{movie.name}}</a></h2>
         <p>{{movie.director}}</p>
         <p>{{movie.release}}</p>
         <p>{{movie.description}}</p>
+        <input type="button" ng-click="deleteMovie(movie)" value="Poista">
     </li>
 </ul>

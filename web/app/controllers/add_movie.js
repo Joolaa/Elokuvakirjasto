@@ -24,12 +24,12 @@ MovieApp.controller('AddMovieController', function($scope, $location, FirebaseSe
         $scope.movie.director = "";
         $scope.movie.release = "";
         $scope.movie.description = "";
-    }
+    };
     
     var checkFields = function() {
         return $scope.movie.name.length > 0 
                 && $scope.movie.director.length > 0
                 && $scope.movie.release.length > 0
                 && $scope.movie.description.length > 0;
-    }
+    };
 });
