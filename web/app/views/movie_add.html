@@ -1,0 +1,13 @@
+<h1>Lisää elokuva</h1>
+<form novalidate name="movieForm">
+    <p ng-show="movieForm.$invalid">Kaikki kentät täytyy täyttää</p>
+    Nimi:<br>
+    <input type="text" ng-model="movie.name" required ng-minlength="1"><br>
+    Ohjaaja:<br>
+    <input type="text" ng-model="movie.director" required ng-minlength="1"><br>
+    Julkaisuvuosi:<br>
+    <input type="text" ng-model="movie.release" required ng-minlength="1"><br>
+    Kuvaus:<br>
+    <textarea ng-model="movie.description" required ng-minlength="1"></textarea><br>
+    <input type="submit" value="Tallenna" ng-click="addMovie()" ng-disabled="movieForm.$invalid"><br>
+</form>
