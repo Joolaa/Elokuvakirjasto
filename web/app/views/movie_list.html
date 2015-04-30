@@ -1,31 +1,50 @@
-<a href="#/login" ng-if="!userLoggedIn">Kirjaudu sisään/Rekisteröidy</a>
-<ul>
-    <li ng-repeat="movie in movies">
-        <h2><a ng-href="#/movies/{{movie.$id}}">{{movie.name}}</a></h2>
-        <p>{{movie.director}}</p>
-        <p>{{movie.release}}</p>
-        <p>{{movie.description}}</p>
-        <input type="button" ng-click="deleteMovie(movie)" ng-if="userLoggedIn" value="Poista">
-    </li>
-</ul><br>
-<p>Hae elokuvaa</p>
+<h1>Elokuvat</h1>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Nimi</th>
+            <th>Ohjaaja</th>
+            <th>Julkaisuvuosi</th>
+            <th ng-if="userLoggedIn"></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="movie in movies">
+            <td><a ng-href="#/movies/{{movie.$id}}">{{movie.name}}</a></td>
+            <td>{{movie.director}}</td>
+            <td>{{movie.release}}</td>
+            <td><input class="btn btn-danger" type="button" ng-click="deleteMovie(movie)" ng-if="userLoggedIn" value="Poista"></td>
+        </tr>
+    </tbody>
+</table><br>
+<h1>Hae elokuvaa</h1>
 <form>
-    Nimi:
-    <input type="text" ng-model="searchName">
-    Julkaisuvuosi:
-    <input type="text" ng-model="searchYear">
-    <input type="button" ng-click="searchMovie()" value="Hae">
+    <div class="form-group">
+        <label>Nimi:</label>
+        <input class="form-control" type="text" ng-model="searchName">
+        <label>Julkaisuvuosi:</label>
+        <input class="form-control" type="text" ng-model="searchYear"><br>
+        <input class="btn btn-primary" type="button" ng-click="searchMovie()" value="Hae">
+    </div>
 </form>
-<p ng-hide="!searched">
+<h2 ng-hide="!searched">
     <ng-pluralize count="amountOfSearched()"
                   when="{'0': 'Elokuvia ei löytynyt.',
-                         '1': 'Yksi elokuva löytyi.',
-                         'other': '{} elokuvaa löytyi.'}"></ng-pluralize>
-</p>
+                  '1': 'Yksi elokuva löytyi.',
+                  'other': '{} elokuvaa löytyi.'}"></ng-pluralize>
+</h2>
 
-<ul>
-    <li ng-repeat="searchedMovie in searchedMovies">
-        <h2><a ng-href="http://www.imdb.com/title/{{searchedMovie.imdbID}}">{{searchedMovie.Title}}</a></h2>
-        <p>{{searchedMovie.Year}}</p>
-    </li>
-</ul>
+<table class="table" ng-hide='!searched'>
+    <thead>
+        <tr>
+            <th>Nimi</th>
+            <th>Julkaisuvuosi</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="searchedMovie in searchedMovies">
+            <td><a ng-href="http://www.imdb.com/title/{{searchedMovie.imdbID}}">{{searchedMovie.Title}}</a></td>
+            <td>{{searchedMovie.Year}}</td>
+        </tr>
+    </tbody>
+</table>

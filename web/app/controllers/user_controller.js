@@ -1,6 +1,7 @@
 MovieApp.controller('UserController', function ($scope, $location, AuthService) {
 
     $scope.logIn = function () {
+        console.log($scope.email);
         AuthService.logUserIn($scope.email, $scope.password)
                 .then(function () {
                     $location.path('/movies');
