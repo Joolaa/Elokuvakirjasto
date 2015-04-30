@@ -6,4 +6,25 @@
         <p>{{movie.description}}</p>
         <input type="button" ng-click="deleteMovie(movie)" value="Poista">
     </li>
+</ul><br>
+<p>Hae elokuvaa</p>
+<form>
+    Nimi:
+    <input type="text" ng-model="searchName">
+    Julkaisuvuosi:
+    <input type="text" ng-model="searchYear">
+    <input type="button" ng-click="searchMovie()" value="Hae">
+</form>
+<p ng-hide="!searched">
+    <ng-pluralize count="amountOfSearched()"
+                  when="{'0': 'Elokuvia ei löytynyt.',
+                         '1': 'Yksi elokuva löytyi.',
+                         'other': '{} elokuvaa löytyi.'}"></ng-pluralize>
+</p>
+
+<ul>
+    <li ng-repeat="searchedMovie in searchedMovies">
+        <h2><a ng-href="http://www.imdb.com/title/{{searchedMovie.imdbID}}">{{searchedMovie.Title}}</a></h2>
+        <p>{{searchedMovie.Year}}</p>
+    </li>
 </ul>

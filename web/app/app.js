@@ -20,3 +20,7 @@ MovieApp.config(function($routeProvider) {
         redirectTo: '/'
     });
 });
+
+MovieApp.config(['$httpProvider', function($httpProvider) {
+        delete $httpProvider.defaults.headers.common['X-Requested-With'];
+}]);
