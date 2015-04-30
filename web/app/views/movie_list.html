@@ -1,10 +1,11 @@
+<a href="#/login" ng-if="!userLoggedIn">Kirjaudu sisään/Rekisteröidy</a>
 <ul>
     <li ng-repeat="movie in movies">
         <h2><a ng-href="#/movies/{{movie.$id}}">{{movie.name}}</a></h2>
         <p>{{movie.director}}</p>
         <p>{{movie.release}}</p>
         <p>{{movie.description}}</p>
-        <input type="button" ng-click="deleteMovie(movie)" value="Poista">
+        <input type="button" ng-click="deleteMovie(movie)" ng-if="userLoggedIn" value="Poista">
     </li>
 </ul><br>
 <p>Hae elokuvaa</p>
